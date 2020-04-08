@@ -58,56 +58,57 @@ public class PointController extends HttpServlet {
 					path="../WEB-INF/views/point/pointList.jsp";
 					
 				}else if(command.equals("/pointAdd")) {
-					if(method.equals("POST")) {
-						PointDTO pointDTO = new PointDTO();	
-						pointDTO.setName((request.getParameter("num")));
-						pointDTO.setNum(Integer.parseInt(request.getParameter("num")));
-						pointDTO.setKor(Integer.parseInt(request.getParameter("kor")));
-						pointDTO.setEng(Integer.parseInt(request.getParameter("eng")));
-						pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
+						if(method.equals("POST")) {
+							PointDTO pointDTO = new PointDTO();	
+							pointDTO.setName((request.getParameter("num")));
+							pointDTO.setNum(Integer.parseInt(request.getParameter("num")));
+							pointDTO.setKor(Integer.parseInt(request.getParameter("kor")));
+							pointDTO.setEng(Integer.parseInt(request.getParameter("eng")));
+							pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
+							
+			
+							 int result=pointService.pointAdd(pointDTO);
+							
+							check=false;
+							path="./pointList";
+							
+						}else {
+	
+							 path="../WEB-INF/views/point/pointAdd.jsp";
+						}
 						
-		
-						 int result=pointService.pointAdd(pointDTO);
-						
-						check=false;
-						path="./pointList";
-						
-					}else {
-
-						 path="../WEB-INF/views/point/pointAdd.jsp";
-					}
-					
 				}else if(command.equals("/pointMod")){
-					if(method.equals("POST")) {
-						
-					}else {
-						path="../WEB-INF/views/point/pointMod.jsp";
-					}
+						if(method.equals("POST")) {
+							
+						}else {
+							path="../WEB-INF/views/point/pointMod.jsp";
+						}
 					
 					
 				}else if(command.equals("/pointSelect")) {
-					
-					int num =Integer.parseInt(request.getParameter("num"));
-					 PointDTO pointDTO=pointService.pointSelect(num);
-					
-					request.setAttribute("dto", pointDTO);
-					path="../WEB-INF/views/point/pointSelect.jsp";
+						
+						int num =Integer.parseInt(request.getParameter("num"));
+						 PointDTO pointDTO=pointService.pointSelect(num);
+						
+						request.setAttribute("dto", pointDTO);
+						path="../WEB-INF/views/point/pointSelect.jsp";
 					
 				}else if(command.equals("/pointDelete")) {
-					check=false;
-					//리다이렉트에 포인트 포인트리스트로 보내기
-					
-					int num =Integer.parseInt(request.getParameter("num"));
-					 int result=pointService.pointDelete(num);
-					 path="./pointList";
+						check=false;
+						//리다이렉트에 포인트 포인트리스트로 보내기
+						
+						int num =Integer.parseInt(request.getParameter("num"));
+						 int result=pointService.pointDelete(num);
+						 path="./pointList";
 					
 				}else {
-					System.out.println("ETC");
+						System.out.println("ETC");
 				}
 		
 		}catch (Exception e) {
 			e.printStackTrace(); //에러메세지 콘솔창
 		}
+		
 		if(check==true) {
 			RequestDispatcher view = request.getRequestDispatcher(path);
 			view.forward(request, response);
