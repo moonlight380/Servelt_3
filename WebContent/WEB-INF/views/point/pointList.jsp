@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <!-- BootStrap API -->  
 </head>
 <body>
-
+<!-- Nav -->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -45,6 +46,34 @@
   <p>This is some text.</p>      
   <p>This is another text.</p>      
 </div>
-	<h1>pointList Page</h1>
+
+
+<div class="container">
+	<div class="row">
+		<h1>Point List Page</h1>
+		<table class="table table-hover">
+		<tr>
+			<td>번호</td>
+			<td>이름</td>
+			<td>평균</td>
+		</tr>
+		<c:forEach items="${requestScope.list}" var="dto"> <!-- requestScope.는 안써도 무방 -->
+			<tr>
+				<td>${dto.num}</td>
+				<td><a href="./pointSelect?num=${dto.num}">${dto.name}</a></td>
+				<td>${dto.avg}</td>
+			</tr>		
+		</c:forEach>
+		</table>
+	
+	</div>
+</div>
+
+
+
+
+
+
+	
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.google.point;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,18 +17,21 @@ import javax.servlet.http.HttpServletResponse;
 public class PointController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
+	private PointService pointService;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public PointController() {
         super();
         // TODO Auto-generated constructor stub
+        this.pointService = new PointService();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		//한글 Encoding 처리(가장먼저 처리해야 함, 꺼내기 전에)
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -45,38 +49,51 @@ public class PointController extends HttpServlet {
 		//URL(path)를 담을 변수
 		String path="";
 		
-		
-			if(command.equals("/pointList")) {
-				
-				
-				path="../WEB-INF/views/point/pointList.jsp";
-				
-			}else if(command.equals("/pointAdd")) {
-				if(method.equals("POST")) {
-				}else {
-					path="../WEB-INF/views/point/pointAdd.jsp";
-				}
-				
-			}else if(command.equals("/pointMod")){
-				if(method.equals("POST")) {
+		try {
+				if(command.equals("/pointList")) {
+					
+						ArrayList<PointDTO> ar=pointService.pointList();
+						request.setAttribute("list",ar);
+						
+					path="../WEB-INF/views/point/pointList.jsp";
+					
+				}else if(command.equals("/pointAdd")) {
+					if(method.equals("POST")) {
+					}else {
+						path="../WEB-INF/views/point/pointAdd.jsp";
+					}
+					
+				}else if(command.equals("/pointMod")){
+					if(method.equals("POST")) {
+						
+					}else {
+						path="../WEB-INF/views/point/pointMod.jsp";
+					}
+					
+					
+				}else if(command.equals("/pointSelect")) {
+					
+					int num =Integer.parseInt(request.getParameter("num"));
+					 PointDTO pointDTO=pointService.pointSelect(num);
+					
+					request.setAttribute("dto", pointDTO);
+					path="../WEB-INF/views/point/pointSelect.jsp";
+					
+				}else if(command.equals("/pointDelete")) {
+					check=false;
+					//리다이렉트에 포인트 포인트리스트로 보내기
+					
+					int num =Integer.parseInt(request.getParameter("num"));
+					 int result=pointService.pointDelete(num);
+					 path="./pointList";
 					
 				}else {
-					path="../WEB-INF/views/point/pointMod.jsp";
+					System.out.println("ETC");
 				}
-				
-				
-			}else if(command.equals("/pointSelect")) {
-				check=true;
-				path="../WEB-INF/views/point/pointSelect.jsp";
-				
-			}else if(command.equals("/pointDelete")) {
-				
-				System.out.println("delete");
-			}else {
-				System.out.println("ETC");
-			}
 		
-		
+		}catch (Exception e) {
+			e.printStackTrace(); //에러메세지 콘솔창
+		}
 		if(check==true) {
 			RequestDispatcher view = request.getRequestDispatcher(path);
 			view.forward(request, response);
