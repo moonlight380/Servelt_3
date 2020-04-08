@@ -21,6 +21,6 @@
 - /point/pointAdd        /    pointAdd.jsp      /  GET
 - /point/pointAdd        /   미정                               /  POST
 - /point/pointSelect     /    pointSelect.jsp   /  GET
-- /point/pointMode       /    pointMode.jsp    /  GET
-- /point/pointMode        /    pointAdd.jsp    / POST
+- /point/pointMod       /    pointMod.jsp    /  GET
+- /point/pointMod        /    pointMod.jsp    / POST
 - /point/pointDelete      /                   /  GET

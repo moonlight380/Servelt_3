@@ -1,6 +1,8 @@
 package com.google.point;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,26 +42,49 @@ public class PointController extends HttpServlet {
 		//Forward(true) Redirect(false)  선택
 		boolean check = true;
 		
-		//path를 담을 변수
+		//URL(path)를 담을 변수
 		String path="";
 		
 		
-		if(command.equals("/pointList")) {
-			
-			System.out.println("list");
-			
-		}else if(command.equals("/pointAdd")) {
-			System.out.println("add");
-		}else if(command.equals("/pointMod")){
-			System.out.println("mod");
-			
-		}else if(command.equals("/pointSelect")) {
-			System.out.println("select");
-		}else if(command.equals("/pointDelete")) {
-			System.out.println("delete");
+			if(command.equals("/pointList")) {
+				
+				
+				path="../WEB-INF/views/point/pointList.jsp";
+				
+			}else if(command.equals("/pointAdd")) {
+				if(method.equals("POST")) {
+				}else {
+					path="../WEB-INF/views/point/pointAdd.jsp";
+				}
+				
+			}else if(command.equals("/pointMod")){
+				if(method.equals("POST")) {
+					
+				}else {
+					path="../WEB-INF/views/point/pointMod.jsp";
+				}
+				
+				
+			}else if(command.equals("/pointSelect")) {
+				check=true;
+				path="../WEB-INF/views/point/pointSelect.jsp";
+				
+			}else if(command.equals("/pointDelete")) {
+				
+				System.out.println("delete");
+			}else {
+				System.out.println("ETC");
+			}
+		
+		
+		if(check==true) {
+			RequestDispatcher view = request.getRequestDispatcher(path);
+			view.forward(request, response);
 		}else {
-			System.out.println("ETS");
+			response.sendRedirect(path);
 		}
+		
+		
 		
 	}
 
