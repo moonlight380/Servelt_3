@@ -65,6 +65,8 @@
 			</tr>		
 		</c:forEach>
 		</table>
+		
+		<a href="./pointAdd?num=${dto.num}" class= "btn btn-primary">Point Add</a>
 	
 	</div>
 </div>
