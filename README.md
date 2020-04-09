@@ -24,3 +24,6 @@
 - /point/pointMod       /    pointMod.jsp    /  GET
 - /point/pointMod        /    pointMod.jsp    / POST
 - /point/pointDelete      /                   /  GET
+
+
+#Home add1
