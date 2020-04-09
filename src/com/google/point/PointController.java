@@ -111,7 +111,7 @@ public class PointController extends HttpServlet {
 								 }
 
 								request.setAttribute("result", msg);
-							path="../WEB-INF/views/common/result.jsp"; //포워드로 보낼 주소
+								path="../WEB-INF/views/common/result.jsp"; //포워드로 보낼 주소
 							 
 							 
 							 
