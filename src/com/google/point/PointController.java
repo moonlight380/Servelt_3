@@ -66,11 +66,14 @@ public class PointController extends HttpServlet {
 							pointDTO.setEng(Integer.parseInt(request.getParameter("eng")));
 							pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
 							
-			
 							 int result=pointService.pointAdd(pointDTO);
 							
-							check=false;
-							path="./pointList";
+							check=false; //doPOST가 실행되어서
+							path="./pointList"; //pointList로 간다
+							
+							//포워드 방식으로 보내면 데이터가 없음. 그러나 포워드 방식으로 보내면 DB로 가야 하는데 데이터를 담아가지 않아서 뽑아갈 데이터가 없음
+							
+							//path="../WEB-INF/views/point/pointList.jsp";
 							
 						}else {
 	
@@ -80,7 +83,22 @@ public class PointController extends HttpServlet {
 				}else if(command.equals("/pointMod")){
 						if(method.equals("POST")) {
 							
+							PointDTO pointDTO = new PointDTO();	
+							pointDTO.setName((request.getParameter("name")));
+							pointDTO.setNum(Integer.parseInt(request.getParameter("num")));
+							pointDTO.setKor(Integer.parseInt(request.getParameter("kor")));
+							pointDTO.setEng(Integer.parseInt(request.getParameter("eng")));
+							pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
+							
+							 int result=pointService.pointUpdate(pointDTO);
+							
+							check=false; //doPOST가 실행되어서
+							path="./pointSelect?num="+pointDTO.getNum(); 
+							
 						}else {
+							int num =Integer.parseInt(request.getParameter("num"));
+							 PointDTO pointDTO=pointService.pointSelect(num);
+							request.setAttribute("dto", pointDTO); //서버내에서 또다른 서버로 보내는 것. value 는 보내줄 데이터
 							path="../WEB-INF/views/point/pointMod.jsp";
 						}
 					
@@ -90,7 +108,7 @@ public class PointController extends HttpServlet {
 						int num =Integer.parseInt(request.getParameter("num"));
 						 PointDTO pointDTO=pointService.pointSelect(num);
 						
-						request.setAttribute("dto", pointDTO);
+						request.setAttribute("dto", pointDTO); //서버내에서 또다른 서버로 보내는 것. value 는 보내줄 데이터
 						path="../WEB-INF/views/point/pointSelect.jsp";
 					
 				}else if(command.equals("/pointDelete")) {

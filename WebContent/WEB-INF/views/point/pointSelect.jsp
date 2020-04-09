@@ -69,7 +69,8 @@
 				</tr>		
 		
 		</table>
-		
+		<!-- //수정 폼이 나와야 하는데 전에 넣엇넌 내용들이 나와야 함...  -->
+		<a href="./pointMod?num=${dto.num}" class="btn btn-primary">Update</a>
 		<a href="./pointDelete?num=${dto.num}" class="btn btn-danger">Delete</a>
 	</div>
 </div>

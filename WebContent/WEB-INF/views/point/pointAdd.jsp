@@ -57,11 +57,11 @@
 
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name_1" placeholder="Enter name" name="name">
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
     </div>
     <div class="form-group">
       <label for="num">Num:</label>
-      <input type="text" class="form-control" id="num_1" placeholder="Enter num" name="num">
+      <input type="text" class="form-control" id="num" placeholder="Enter num" name="num">
     </div>
     <div class="form-group">
       <label for="kor">Kor:</label>
@@ -74,14 +74,6 @@
     <div class="form-group">
       <label for="math">Math:</label>
       <input type="text" class="form-control" id="math" placeholder="Enter math" name="math">
-    </div>
-    <div class="form-group">
-      <label for="total">Total:</label>
-      <input type="text" class="form-control" id="total" placeholder="Enter total" name="total">
-    </div>
-    <div class="form-group">
-      <label for="avg">Avg:</label>
-      <input type="text" class="form-control" id="avg" placeholder="Enter avg" name="avg">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>

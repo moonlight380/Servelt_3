@@ -89,17 +89,40 @@ public class PointDAO {
 		st.setDouble(7,pointDTO.getAvg());
 		int result =st.executeUpdate(); 
 		
-		if(result>0) {
-			System.out.println("성공");
-		}else{
-			System.out.println("실패");
-		}
+
 		st.close();
 		con.close();
 		return result;
 	}
 		
-	//4. Update	
+	//4. Update(Mod)
+	public int pointUpdate(PointDTO pointDTO) throws Exception{
+		Connection con =DBConnect.getConnect();
+		String sql="UPDATE point SET  name=?,kor=?,eng=?,math=?,total=?,avg=? WHERE num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1,pointDTO.getName());
+		st.setInt(2,pointDTO.getKor());
+		st.setInt(3,pointDTO.getEng());
+		st.setInt(4,pointDTO.getMath());
+		st.setInt(5,pointDTO.getTotal());
+		st.setDouble(6,pointDTO.getAvg());
+		st.setInt(7,pointDTO.getNum());
+		int result =st.executeUpdate(); 
+		
+		if(result>0) {
+			System.out.println("성공");
+		}else{
+			System.out.println("실패");
+		}
+		
+		st.close();
+		con.close();
+		return result;
+	}
+	
+	
+	
 	//5. Delete
 	public int pointDelete(int num) throws Exception{
 		
