@@ -67,14 +67,23 @@ public class PointController extends HttpServlet {
 							pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
 							
 							 int result=pointService.pointAdd(pointDTO);
-							
-							check=false; //doPOST가 실행되어서
-							path="./pointList"; //pointList로 간다
-							
-							//포워드 방식으로 보내면 데이터가 없음. 그러나 포워드 방식으로 보내면 DB로 가야 하는데 데이터를 담아가지 않아서 뽑아갈 데이터가 없음
-							
-							//path="../WEB-INF/views/point/pointList.jsp";
-							
+							String msg="점수 등록실패";
+							 
+							if(result>0) {
+								 msg="점수 등록 성공";
+								 
+							 }
+							request.setAttribute("result", msg);
+							request.setAttribute("path", "./pointList");
+							 path="../WEB-INF/views/common/result.jsp";
+								/*
+								 * check=false; //doPOST가 실행되어서 path="./pointList"; //pointList로 간다
+								 * 
+								 * //포워드 방식으로 보내면 데이터가 없음. 그러나 포워드 방식으로 보내면 DB로 가야 하는데 데이터를 담아가지 않아서 뽑아갈 데이터가 없음
+								 * //path="../WEB-INF/views/point/pointList.jsp";
+								 */			
+							 
+							 
 						}else {
 	
 							 path="../WEB-INF/views/point/pointAdd.jsp";
@@ -92,8 +101,24 @@ public class PointController extends HttpServlet {
 							
 							 int result=pointService.pointUpdate(pointDTO);
 							
-							check=false; //doPOST가 실행되어서
-							path="./pointSelect?num="+pointDTO.getNum(); 
+							 String msg="점수 등록실패";
+							 
+								if(result>0) {
+									 msg="점수 등록 성공";
+									 request.setAttribute("path", "./pointSelect?num="+pointDTO.getNum());
+								 }else {
+									 request.setAttribute("path", "./pointList");
+								 }
+
+								request.setAttribute("result", msg);
+							path="../WEB-INF/views/common/result.jsp"; //포워드로 보낼 주소
+							 
+							 
+							 
+								/*
+								 * check=false; //doPOST가 실행되어서
+								 *  path="./pointSelect?num="+pointDTO.getNum();
+								 */
 							
 						}else {
 							int num =Integer.parseInt(request.getParameter("num"));
