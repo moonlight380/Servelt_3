@@ -19,9 +19,7 @@ public class PointDAO {
 		String sql="SELECT * FROM point ORDER BY num ASC";
 		//3.SQL을 미리 전송
 		PreparedStatement st = con.prepareStatement(sql);			
-		
 		//4.? 값 세팅
-		
 		//5.최종 전송 후 결과 처리
 		ResultSet rs =st.executeQuery();
 		while(rs.next()) {

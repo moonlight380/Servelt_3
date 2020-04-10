@@ -23,7 +23,6 @@
 </servlet-mapping>
 
 
-
 <servlet>
 	<servlet-name>member</servlet-name>
 	<servlet-class>com.google.member.MemberController</servlet-class>
@@ -33,5 +32,21 @@
 	<servlet-name>member</servlet-name>
 	<url-pattern>/member/*</url-pattern>
 </servlet-mapping>
+
+
+
+<!-- notice -->
+<servlet>
+	<servlet-name>notice</servlet-name>
+	<servlet-class>com.google.notice.NoticeController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>notice</servlet-name>
+	<url-pattern>/notice/*</url-pattern>
+</servlet-mapping>
+
+
+
 
 </web-app>

@@ -40,7 +40,7 @@ public class PointService {
 	//5.Update	
 	public int pointUpdate(PointDTO pointDTO) throws Exception{
 		pointDTO.setTotal(pointDTO.getKor()+pointDTO.getEng()+pointDTO.getMath());
-		pointDTO.setAvg(pointDTO.getTotal()/3.0);
+		pointDTO.setAvg(pointDTO.getTotal()/3.0);	
 		int result=pointDAO.pointUpdate(pointDTO);
 		
 		return result;
