@@ -44,9 +44,6 @@ public class PointService {
 		int result=pointDAO.pointUpdate(pointDTO);
 		
 		return result;
-		
-	
-	
 	}
 	
 }//END CLASS

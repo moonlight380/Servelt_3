@@ -46,6 +46,7 @@ public class MemberController extends HttpServlet {
 			try {
 			if(command.equals("/memberJoin")) {
 					if(method.equals("POST")) {
+						//디비에 인서트
 						MemberDTO memberDTO = new MemberDTO();
 						memberDTO.setId(request.getParameter("id"));
 						memberDTO.setPassword(request.getParameter("password"));
@@ -77,6 +78,7 @@ public class MemberController extends HttpServlet {
 						 if(memberDTO != null) {
 							 	HttpSession session=request.getSession();
 							 	session.setAttribute("member", memberDTO);
+								/* request.setAttribute("member", "test"); 스코프는 생략할 수 있지만 작은 영역부터 찾아서 이름이 같다면 원하는 결과가 안나올 수 있음*/
 								check = false;
 								path="../";
 							}else {
@@ -103,10 +105,72 @@ public class MemberController extends HttpServlet {
 				path="../";
 				
 				
-			}else if(command.equals("/myPage")) {
+			}else if(command.equals("/memberPage")) {
+				path="../WEB-INF/views/member/memberPage.jsp";
+			
+				
+				
+			}else if(command.equals("/memberDelete")) {
+				
+				MemberDTO memberDTO = new MemberDTO();
+				HttpSession session=request.getSession(); //내장객체 request 안에 세션이 있다.
+			 	memberDTO=(MemberDTO)session.getAttribute("member");//로그인 당시 member로 줬다 //속성이 object이기 때문에 형변환해야 한다
+			 	//System.out.println(memberDTO.getId());
+				String id =memberDTO.getId();
+				
+				int result=memberService.memberDelete(id);
+				
+				if(result>0) {
+					session.invalidate(); //로그 아웃 상태로 변하도록
+				}
+				
+
+				check=false;
+				path="../";
+				
+			//업데이트
+			}else if(command.equals("/memberUpdate")) {
+				if(method.equals("POST")) {
+					MemberDTO memberDTO = new MemberDTO();
+					HttpSession session=request.getSession();
+
+					memberDTO.setId(request.getParameter("id"));
+					memberDTO.setPassword(request.getParameter("password"));
+					memberDTO.setName(request.getParameter("name"));
+					memberDTO.setEmail(request.getParameter("email"));
+					memberDTO.setTel(request.getParameter("tel"));
+					memberDTO.setAge(Integer.parseInt(request.getParameter("age")));
 					
-						path="../WEB-INF/views/member/myPage.jsp";
 					
+				 	int result=memberService.memberUpdate(memberDTO);
+				 	
+					 String msg="회원 수정실패";
+					 System.out.println(result);
+					 
+					 
+						if(result>0) {
+							
+							//세션에 있는 데이터를 바꿔줘야 함
+							
+							session.setAttribute("member", memberDTO);//성공하면 새로운 데이터로 수정하겠다
+							 msg="회원 수정 성공";
+							 request.setAttribute("path", "./memberPage");
+						 }else {
+							 request.setAttribute("path", "./memberUpdate");
+						 }
+						
+						request.setAttribute("result", msg);
+						path="../WEB-INF/views/common/result.jsp"; //포워드로 보낼 주소
+					
+
+		
+				}else {
+					path="../WEB-INF/views/member/memberUpdate.jsp";
+				}
+				
+				
+				
+				
 			}
 			}catch (Exception e) {
 				// TODO: handle exception

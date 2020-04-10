@@ -1,5 +1,7 @@
 package com.google.member;
 
+import com.google.point.PointDTO;
+
 public class MemberService {
 
 	private MemberDAO memberDAO;
@@ -20,6 +22,22 @@ public class MemberService {
 		return memberDTO;
 				
 	}
+	//딜리트
+	
+	public int memberDelete(String id) throws Exception{
+		int result=memberDAO.memberDelete(id);
+		
+		return result;
+	}
+	//업데이트
+	public int memberUpdate(MemberDTO memberDTO) throws Exception{
+		int result=memberDAO.memberUpdate(memberDTO);
+		
+		return result;
+		
+	}
+	
+	
 	
 	/*
 	 * public MemberDTO myPage(int num) throws Exception {
