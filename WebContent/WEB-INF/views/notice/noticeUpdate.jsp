@@ -13,33 +13,37 @@
 
 <div class="container">
 	<div class="row">
-		<h1>pointUpdate Form</h1>
+		<h1>noticeUpdate Form</h1>
 		
 		<form action="./noticeUpdate" method="post">
 
     <div class="form-group">
       <label for="no">No:</label>
-      <input type="text" class="form-control" id="no" placeholder="Enter no" name="no" value="${ndto.no}"readonly="readonly" >
+      <input type="text" class="form-control" id="no" placeholder="Enter no" name="no" value="${update.no}"readonly="readonly" >
     </div>
     <div class="form-group">
       <label for="subject">Subject:</label>
-      <input type="text" class="form-control" id="subject" placeholder="Enter subject" name="subject" value="${ndto.subject}" >
+      <input type="text" class="form-control" id="subject" placeholder="Enter subject" name="subject" value="${update.subject}" >
     </div>
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="${ndto.name}" readonly="readonly">
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="${update.name}" readonly="readonly">
     </div>
-    <div class="form-group">
+     <div class="form-group">
       <label for="day">Day:</label>
-      <input type="date" class="form-control" id="day" placeholder="Enter day" name="day" value="${ndto.day}">
-    </div>
+      <input type="date" class="form-control" id="day" placeholder="Enter day" name="day" value="${update.day}" readonly="readonly">
+    </div> 
     <div class="form-group">
       <label for="hit">Hit:</label>
-      <input type="text" class="form-control" id="hit" placeholder="Enter hit" name="hit" value="${ndto.hit}">
+      <input type="text" class="form-control" id="hit" placeholder="Enter hit" name="hit" value="${update.hit}">
     </div>
 
     
     <button type="submit" class="btn btn-default">Submit</button>
+    <br>
+    <br>
+    <br>
+    <br>
   </form>
 		
 		

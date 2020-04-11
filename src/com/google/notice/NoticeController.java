@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.point.PointDTO;
 
@@ -92,36 +93,53 @@ public class NoticeController extends HttpServlet {
 						
 					request.setAttribute("ndto", noticeDTO); //서버내에서 또다른 서버로 보내는 것. value 는 보내줄 데이터
 					path="../WEB-INF/views/notice/noticeSelect.jsp";	
-				
+					HttpSession session=request.getSession();
+					session.setAttribute("update", noticeDTO);
+					
 				//update
 				}else if(command.equals("/noticeUpdate")) {
-					if(method.equals("POST")) {
+						if(method.equals("POST")) {
+							
+							NoticeDTO noticeDTO = new  NoticeDTO();
+							noticeDTO.setSubject(request.getParameter("subject"));
+							noticeDTO.setName(request.getParameter("name"));
+							noticeDTO.setNo(Integer.parseInt(request.getParameter("no")));
+							noticeDTO.setHit(Integer.parseInt(request.getParameter("hit")));
+							
+							
+							 int result=noticeService.noticeUpdate(noticeDTO);
+							 String msg="게시글 업데이트 실패";
+							
+								if(result>0) {
+									//세션에 있는 데이터를 바꿔줘야 함
+									HttpSession session=request.getSession();
+									session.setAttribute("update", noticeDTO);
+									 msg="게시글 업데이트 성공";
+									 request.setAttribute("path", "./noticeList");
+								 }else {
+									 request.setAttribute("path", "./noticeUpdate");
+								 }
+								
+								request.setAttribute("result", msg);
+								path="../WEB-INF/views/common/result.jsp"; //포워드로 보낼 주소
+ 
+						}else {
+		
+							 path="../WEB-INF/views/notice/noticeUpdate.jsp";
+						}
 						
-						NoticeDTO noticeDTO = new  NoticeDTO();
-						noticeDTO.setSubject(request.getParameter("subject"));
-						noticeDTO.setHit(Integer.parseInt(request.getParameter("hit")));
 						
-						
-						 int result=noticeService.noticeAdd(noticeDTO);
-						String msg="게시글 등록실패";
-						 
-						if(result>0) {
-							 msg="게시글 등록 성공";
-							 
-						 }
-						request.setAttribute("result", msg);
-						request.setAttribute("path", "./noticeList");
-						 path="../WEB-INF/views/common/result.jsp";		
-						 
-						 
-					}else {
-	
-						 path="../WEB-INF/views/notice/noticeUpdate.jsp";
-					}
-					
-					
-					
-				}
+			//delete	
+				}else if(command.equals("/noticeDelete")) {
+					check=false;
+				
+					int no =Integer.parseInt(request.getParameter("no"));
+					 int result=noticeService.noticeDelete(no);
+					 path="./noticeList";
+				
+			}else {
+					System.out.println("ETC");
+			}
 				
 				
 			

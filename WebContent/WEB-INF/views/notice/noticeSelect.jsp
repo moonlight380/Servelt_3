@@ -32,8 +32,8 @@
 		
 		</table>
 		<!-- //수정 폼이 나와야 하는데 전에 넣엇넌 내용들이 나와야 함...  -->
-		 <a href="./noticeMod?num=${ndto.no}" class= "btn btn-primary">Notice Update</a>
-		<a href="./noticeDelete?num=${ndto.no}" class="btn btn-danger">Notice Delete</a>
+		 <a href="./noticeUpdate?no=${ndto.no}" class= "btn btn-primary">Notice Update</a>
+		<a href="./noticeDelete?no=${ndto.no}" class="btn btn-danger">Notice Delete</a>
 	</div>
 </div>
 </body>

@@ -81,13 +81,17 @@ public class NoticeDAO {
 	}
 	//Update
 	public int noticeUpdate(NoticeDTO noticeDTO) throws Exception {
+		
 		Connection con =DBConnect.getConnect();
-		String sql = "UPDATE notice set subject=?,'admin',sysdate, hit=?, where no=NOTICE_seq.nextval";
+		String sql = "UPDATE notice set subject=?,name=?,day=sysdate,hit=? where no=?";
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, noticeDTO.getSubject());
-		st.setInt(2, noticeDTO.getNo());
+		st.setString(2, noticeDTO.getName());
+//		st.setDate(3, noticeDTO.getDay()); 
+		st.setInt(3, noticeDTO.getHit());
+		st.setInt(4, noticeDTO.getNo());
 		int result =st.executeUpdate(); 
-		
+	
 		if(result>0) {
 			System.out.println("성공");
 		}else{
@@ -99,6 +103,23 @@ public class NoticeDAO {
 		return result;
 	}
 	
-	
+	//Delete
+	public int noticeDelete(int no) throws Exception{
+		Connection con =DBConnect.getConnect();
+		String sql="delete from notice where no=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, no);
+		
+		int result =st.executeUpdate();
+		if(result>0) {
+			System.out.println("성공");
+		}else{
+			System.out.println("실패");
+		}
+		st.close();
+		con.close();
+		
+		return result;
+	}
 	
 }//end class

@@ -30,11 +30,14 @@ public class NoticeService {
 	}
 	//noticeUpdate
 	public int noticeUpdate(NoticeDTO noticeDTO) throws Exception{
+		
 		int result = noticeDAO.noticeUpdate(noticeDTO);
 		return result;
-		
-	}//END CLASS
-	
+	}
+	public int noticeDelete(int no)throws Exception{
+		int result = noticeDAO.noticeDelete(no);
+		return result;
+	}
 	
 	
 }//end class
