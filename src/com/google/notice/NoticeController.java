@@ -1,6 +1,8 @@
 package com.google.notice;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -47,45 +49,74 @@ public class NoticeController extends HttpServlet {
 		//패스(url)담을 변수
 		String path="";
 		try {
-		//불러오기
+		//NoticeList
 				if(command.equals("/noticeList")) {
 					ArrayList<NoticeDTO> ar= noticeService.noticeList();
 					request.setAttribute("noticeList", ar);
 					
 					path="../WEB-INF/views/notice/noticeList.jsp";
+
+					//NoiticeADD
 				}else if(command.equals("/noticeAdd")){
 					
+						if(method.equals("POST")) {
+							
+							NoticeDTO noticeDTO = new  NoticeDTO();
+							noticeDTO.setSubject(request.getParameter("subject"));
+							noticeDTO.setHit(Integer.parseInt(request.getParameter("hit")));
+							
+							
+							 int result=noticeService.noticeAdd(noticeDTO);
+							String msg="게시글 등록실패";
+							 
+							if(result>0) {
+								 msg="게시글 등록 성공";
+								 
+							 }
+							request.setAttribute("result", msg);
+							request.setAttribute("path", "./noticeList");
+							 path="../WEB-INF/views/common/result.jsp";		
+							 
+							 
+						}else {
+		
+							 path="../WEB-INF/views/notice/noticeAdd.jsp";
+						}
+						
+					//select
+				}else if(command.equals("/noticeSelect")) {
+						
+					int no =Integer.parseInt(request.getParameter("no"));
+						
+					NoticeDTO noticeDTO =noticeService.noticeSelect(no);
+						
+					request.setAttribute("ndto", noticeDTO); //서버내에서 또다른 서버로 보내는 것. value 는 보내줄 데이터
+					path="../WEB-INF/views/notice/noticeSelect.jsp";	
+				
+				//update
+				}else if(command.equals("/noticeUpdate")) {
 					if(method.equals("POST")) {
 						
 						NoticeDTO noticeDTO = new  NoticeDTO();
-						noticeDTO.setNo(Integer.parseInt(request.getParameter("no")));
 						noticeDTO.setSubject(request.getParameter("subject"));
-
-						noticeDTO.setName(request.getParameter("name"));
 						noticeDTO.setHit(Integer.parseInt(request.getParameter("hit")));
 						
 						
 						 int result=noticeService.noticeAdd(noticeDTO);
-						String msg="점수 등록실패";
+						String msg="게시글 등록실패";
 						 
 						if(result>0) {
-							 msg="점수 등록 성공";
+							 msg="게시글 등록 성공";
 							 
 						 }
 						request.setAttribute("result", msg);
-						request.setAttribute("path", "./pointList");
-						 path="../WEB-INF/views/common/result.jsp";
-							/*
-							 * check=false; //doPOST가 실행되어서 path="./pointList"; //pointList로 간다
-							 * 
-							 * //포워드 방식으로 보내면 데이터가 없음. 그러나 포워드 방식으로 보내면 DB로 가야 하는데 데이터를 담아가지 않아서 뽑아갈 데이터가 없음
-							 * //path="../WEB-INF/views/point/pointList.jsp";
-							 */			
+						request.setAttribute("path", "./noticeList");
+						 path="../WEB-INF/views/common/result.jsp";		
 						 
 						 
 					}else {
 	
-						 path="../WEB-INF/views/point/pointAdd.jsp";
+						 path="../WEB-INF/views/notice/noticeUpdate.jsp";
 					}
 					
 					

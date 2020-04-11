@@ -19,25 +19,25 @@
 	<h1>notice Add Form</h1>
  <form action="./noticeAdd" method="post">
 
+<!--      <div class="form-group">
+      <label for="no">no:</label>
+      <input type="text" class="form-control" id="no" placeholder="Enter no" name="no"  >
+    </div>  -->
     <div class="form-group">
-      <label for="name">no:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+      <label for="subject">subject:</label>
+      <input type="text" class="form-control" id="subject" placeholder="Enter subject" name="subject">
     </div>
+<!--      <div class="form-group">
+      <label for="name">name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name"  >
+    </div>  -->
+<!--    <div class="form-group">
+      <label for="day">day:</label>
+      <input type="date" class="form-control" id="day" placeholder="Enter day" name="day"  >
+    </div>  --> 
     <div class="form-group">
-      <label for="num">subject:</label>
-      <input type="text" class="form-control" id="num" placeholder="Enter num" name="num">
-    </div>
-    <div class="form-group">
-      <label for="kor">name:</label>
-      <input type="text" class="form-control" id="kor" placeholder="Enter kor" name="kor">
-    </div>
-    <div class="form-group">
-      <label for="eng">day:</label>
-      <input type="text" class="form-control" id="eng" placeholder="Enter eng" name="eng">
-    </div>
-    <div class="form-group">
-      <label for="math">hit:</label>
-      <input type="text" class="form-control" id="math" placeholder="Enter math" name="math">
+      <label for="hit">hit:</label>
+      <input type="text" class="form-control" id="hit" placeholder="Enter hit" name="hit">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>

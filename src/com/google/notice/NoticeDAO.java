@@ -38,18 +38,66 @@ public class NoticeDAO {
 		
 		
 	}
-	
+	//noticeAdd
 	public int noticeAdd(NoticeDTO noticeDTO) throws Exception{
+	
 		Connection con =DBConnect.getConnect();
-		String sql="INSERT INTO POINT VALUES (NOTICE_seq.nextval,?,'admin',sysdate,0";
+		String sql="INSERT INTO NOTICE VALUES (NOTICE_seq.nextval,?,'admin',sysdate,?)";
+		
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, noticeDTO.getSubject());
+		st.setInt(2, noticeDTO.getHit());
+		
 		int result =st.executeUpdate(); 
+		st.close();
+		con.close();
+		
+		return result;
+		
+	}
+	
+	//noticeSelect
+	public NoticeDTO noticeSelect(int no) throws Exception{
+		NoticeDTO noticeDTO=null;
+		Connection con= DBConnect.getConnect();
+		String sql ="select * from notice where no =?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, no);
+		ResultSet rs =st.executeQuery();
+		
+		if(rs.next()) {
+			noticeDTO = new NoticeDTO();
+			noticeDTO.setNo(rs.getInt("no"));
+			noticeDTO.setSubject(rs.getString("subject"));
+			noticeDTO.setName(rs.getString("name"));
+			noticeDTO.setDay(rs.getDate("day"));
+			noticeDTO.setHit(rs.getInt("hit"));
+		}else {}
+		
+		rs.close();
+		st.close();
+		con.close();
+		return noticeDTO;
+	}
+	//Update
+	public int noticeUpdate(NoticeDTO noticeDTO) throws Exception {
+		Connection con =DBConnect.getConnect();
+		String sql = "UPDATE notice set subject=?,'admin',sysdate, hit=?, where no=NOTICE_seq.nextval";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, noticeDTO.getSubject());
+		st.setInt(2, noticeDTO.getNo());
+		int result =st.executeUpdate(); 
+		
+		if(result>0) {
+			System.out.println("성공");
+		}else{
+			System.out.println("실패");
+		}
+		
 		st.close();
 		con.close();
 		return result;
 	}
-
 	
 	
 	

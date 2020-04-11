@@ -10,6 +10,7 @@ public class NoticeDTO {
 	private String name;
 	private Date day;
 	private int hit;
+	
 	public int getNo() {
 		return no;
 	}

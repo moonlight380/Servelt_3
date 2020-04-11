@@ -27,7 +27,7 @@
 		<c:forEach items="${noticeList}" var="ndto"> <!-- requestScope.는 안써도 무방 -->
 			<tr>
 				<td>${ndto.no}</td>
-				<td>${ndto.subject}</td>
+				<td><a href="./noticeSelect?no=${ndto.no}">${ndto.subject}</a></td>
 				<td>${ndto.name}</td>
 				<td>${ndto.day}</td>
 				<td>${ndto.hit}</td>
@@ -38,6 +38,7 @@
 	<c:if test="${not empty sessionScope.member}">  <!-- name이 null이 아니면 --> 
     	 <c:if test="${member.name eq 'admin'}"> 
      <a href="./noticeAdd?" class= "btn btn-primary">Notice Add</a>
+  
         </c:if> 
 	</c:if>   
 		
