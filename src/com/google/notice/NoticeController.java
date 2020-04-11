@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.member.MemberDTO;
 import com.google.point.PointDTO;
 
 /**
@@ -132,9 +133,12 @@ public class NoticeController extends HttpServlet {
 			//delete	
 				}else if(command.equals("/noticeDelete")) {
 					check=false;
-				
-					int no =Integer.parseInt(request.getParameter("no"));
-					 int result=noticeService.noticeDelete(no);
+					NoticeDTO noticeDTO = new NoticeDTO();
+					HttpSession session=request.getSession(); //내장객체 request 안에 세션이 있다.
+					noticeDTO=(NoticeDTO)session.getAttribute("update");
+					
+					int no =noticeDTO.getNo();
+					int result=noticeService.noticeDelete(no);
 					 path="./noticeList";
 				
 			}else {

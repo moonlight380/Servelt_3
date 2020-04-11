@@ -32,9 +32,24 @@
 		
 		</table>
 		<!-- //수정 폼이 나와야 하는데 전에 넣엇넌 내용들이 나와야 함...  -->
-		 <a href="./noticeUpdate?no=${ndto.no}" class= "btn btn-primary">Notice Update</a>
-		<a href="./noticeDelete?no=${ndto.no}" class="btn btn-danger">Notice Delete</a>
+		 <a href="./noticeUpdate?no=${ndto.no}" class= "btn btn-primary">UPDATE</a>
+		<button class ="btn btn-danger" id="del">DELETE</button>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+$('#del').click(function(){
+	var result=confirm("정말 삭제하시겠습니까?");
+	if(result){
+		 location.href="./noticeDelete"
+	}else{
+		location.href="#";
+	}
+});
+
+
+
+</script>
 </body>
 </html>
