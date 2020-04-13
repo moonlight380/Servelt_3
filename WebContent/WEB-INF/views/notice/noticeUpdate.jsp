@@ -29,6 +29,12 @@
       <label for="name">Name:</label>
       <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="${update.name}" readonly="readonly">
     </div>
+    
+     <div class="form-group">
+      <label for="body">Body:</label>
+      <input type="text" size="500" class="form-control" id="body" placeholder="Enter body" name="body" value="${update.body}" >
+    </div>
+    
      <div class="form-group">
       <label for="day">Day:</label>
       <input type="date" class="form-control" id="day" placeholder="Enter day" name="day" value="${update.day}" readonly="readonly">

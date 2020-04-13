@@ -71,8 +71,10 @@ public class NoticeDAO {
 			noticeDTO.setNo(rs.getInt("no"));
 			noticeDTO.setSubject(rs.getString("subject"));
 			noticeDTO.setName(rs.getString("name"));
+			noticeDTO.setBody(rs.getString("body"));
 			noticeDTO.setDay(rs.getDate("day"));
 			noticeDTO.setHit(rs.getInt("hit"));
+	
 		}else {}
 		
 		rs.close();
@@ -84,13 +86,13 @@ public class NoticeDAO {
 	public int noticeUpdate(NoticeDTO noticeDTO) throws Exception {
 		
 		Connection con =DBConnect.getConnect();
-		String sql = "UPDATE notice set subject=?,name=?,day=sysdate,hit=? where no=?";
+		String sql = "UPDATE notice set subject=?,name=?,body=?,day=sysdate,hit=? where no=?";
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, noticeDTO.getSubject());
 		st.setString(2, noticeDTO.getName());
-//		st.setDate(3, noticeDTO.getDay()); 
-		st.setInt(3, noticeDTO.getHit());
-		st.setInt(4, noticeDTO.getNo());
+		st.setString(3, noticeDTO.getBody());
+		st.setInt(4, noticeDTO.getHit());
+		st.setInt(5, noticeDTO.getNo());
 		int result =st.executeUpdate(); 
 	
 		if(result>0) {

@@ -29,9 +29,16 @@
 					<td>${ndto.day}</td>
 					<td>${ndto.hit}</td>
 				</tr>	
-				
+		
 		<tr>
-			<td>${ndto.body}</td>
+			<td>body memo</td>
+		</tr>
+				
+		<tr class="info">
+			
+			
+			<td> ${ndto.body}</td>
+			
 		</tr>
 			
 		

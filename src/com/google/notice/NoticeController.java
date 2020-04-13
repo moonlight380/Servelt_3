@@ -97,6 +97,7 @@ public class NoticeController extends HttpServlet {
 						
 					request.setAttribute("ndto", noticeDTO); //서버내에서 또다른 서버로 보내는 것. value 는 보내줄 데이터
 					path="../WEB-INF/views/notice/noticeSelect.jsp";	
+					
 					HttpSession session=request.getSession();
 					session.setAttribute("update", noticeDTO);
 					
@@ -107,6 +108,7 @@ public class NoticeController extends HttpServlet {
 							NoticeDTO noticeDTO = new  NoticeDTO();
 							noticeDTO.setSubject(request.getParameter("subject"));
 							noticeDTO.setName(request.getParameter("name"));
+							noticeDTO.setBody(request.getParameter("body"));
 							noticeDTO.setNo(Integer.parseInt(request.getParameter("no")));
 							noticeDTO.setHit(Integer.parseInt(request.getParameter("hit")));
 							
