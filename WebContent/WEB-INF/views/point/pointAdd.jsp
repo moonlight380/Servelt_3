@@ -18,7 +18,7 @@
 	
 	<h1>Point Add Form</h1>
  <form action="./pointAdd" method="post">
-
+	<%-- <%config %> --%>
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">

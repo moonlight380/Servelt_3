@@ -8,6 +8,8 @@ public class NoticeDTO {
 	private int no;
 	private String subject;
 	private String name;
+
+	private String body;
 	private Date day;
 	private int hit;
 	
@@ -42,7 +44,12 @@ public class NoticeDTO {
 		this.hit = hit;
 	}
 	
-	
+	public String getBody() {
+		return body;
+	}
+	public void setBody(String body) {
+		this.body = body;
+	}
 
 	
 }

@@ -12,7 +12,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container">
 	<div class="row">
-	<h1>pointSelect Page</h1>
+	<h1>Notice Select Page</h1>
 		<table class="table table-hover">
 		<tr>
 			<td>no</td>
@@ -28,7 +28,12 @@
 					<td>${ndto.name}</td>
 					<td>${ndto.day}</td>
 					<td>${ndto.hit}</td>
-				</tr>		
+				</tr>	
+				
+		<tr>
+			<td>${ndto.body}</td>
+		</tr>
+			
 		
 		</table>
 		<!-- //수정 폼이 나와야 하는데 전에 넣엇넌 내용들이 나와야 함...  -->

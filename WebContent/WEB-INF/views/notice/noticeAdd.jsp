@@ -19,22 +19,17 @@
 	<h1>notice Add Form</h1>
  <form action="./noticeAdd" method="post">
 
-<!--      <div class="form-group">
-      <label for="no">no:</label>
-      <input type="text" class="form-control" id="no" placeholder="Enter no" name="no"  >
-    </div>  -->
+
     <div class="form-group">
       <label for="subject">subject:</label>
       <input type="text" class="form-control" id="subject" placeholder="Enter subject" name="subject">
     </div>
-<!--      <div class="form-group">
-      <label for="name">name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name"  >
-    </div>  -->
-<!--    <div class="form-group">
-      <label for="day">day:</label>
-      <input type="date" class="form-control" id="day" placeholder="Enter day" name="day"  >
-    </div>  --> 
+
+     <div class="form-group">
+      <label for="body">body:</label>
+      <input type="text" row="10" class="form-control" id="body" placeholder="Enter body" name="body">
+    </div>
+    
     <div class="form-group">
       <label for="hit">hit:</label>
       <input type="text" class="form-control" id="hit" placeholder="Enter hit" name="hit">

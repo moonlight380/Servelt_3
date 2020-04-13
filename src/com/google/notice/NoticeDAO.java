@@ -9,7 +9,7 @@ import com.google.point.PointDTO;
 import com.google.util.DBConnect;
 
 public class NoticeDAO {
-
+	//noticeList()
 	public ArrayList<NoticeDTO> noticeList() throws Exception{
 		
 		ArrayList<NoticeDTO> ar= new ArrayList<NoticeDTO>();
@@ -42,11 +42,12 @@ public class NoticeDAO {
 	public int noticeAdd(NoticeDTO noticeDTO) throws Exception{
 	
 		Connection con =DBConnect.getConnect();
-		String sql="INSERT INTO NOTICE VALUES (NOTICE_seq.nextval,?,'admin',sysdate,?)";
+		String sql="INSERT INTO NOTICE VALUES (NOTICE_seq.nextval,?,'admin',?,sysdate,?)";
 		
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, noticeDTO.getSubject());
-		st.setInt(2, noticeDTO.getHit());
+		st.setString(2, noticeDTO.getBody());
+		st.setInt(3, noticeDTO.getHit());
 		
 		int result =st.executeUpdate(); 
 		st.close();

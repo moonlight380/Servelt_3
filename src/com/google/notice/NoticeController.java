@@ -44,6 +44,8 @@ public class NoticeController extends HttpServlet {
 			String command =request.getPathInfo();
 		//Method 형식
 			String method =request.getMethod();
+			//getServletConfig().getInitParameter(""); //현재 Servlet의 객체 저장
+			//getServletContext().getInitParameter("");;//전체 정보 저장 객체 (application, Config)
 			
 		//포워드, 리다이렉트
 		boolean check= true;
@@ -65,6 +67,7 @@ public class NoticeController extends HttpServlet {
 							
 							NoticeDTO noticeDTO = new  NoticeDTO();
 							noticeDTO.setSubject(request.getParameter("subject"));
+							noticeDTO.setBody(request.getParameter("body"));
 							noticeDTO.setHit(Integer.parseInt(request.getParameter("hit")));
 							
 							
