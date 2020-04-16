@@ -1,6 +1,7 @@
 package com.google.member;
 
-import com.google.point.PointDTO;
+
+
 
 public class MemberService {
 
